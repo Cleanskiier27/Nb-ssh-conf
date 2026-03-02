@@ -30,12 +30,51 @@ To establish sustainable waste management and resource recovery systems for luna
 │   ├── environmental-data/        # Lunar environment data
 │   └── research/                  # Research papers and references
 ├── src/                           # Source code (future implementation)
-├── data/                          # Sample data and payloads
+├── data/                         # Sample data and payloads
 ├── web-app/                       # Documentation web interface
 └── README.md                      # This file
 ```
 
 ## 🚀 Quick Start
+
+## Vulkan guidance
+
+This section is a quick setup and rendering orientation for the "Reclaimer One" workstream.
+
+### Install Vulkan SDK
+
+Windows:
+- Install the LunarG Vulkan SDK.
+- Ensure the Vulkan SDK bin directory is on PATH.
+- Verify: run `vulkaninfo` and confirm a valid Vulkan instance can be created.
+
+Ubuntu/Debian:
+- Install loader + tools + validation layers: `sudo apt-get update && sudo apt-get install -y vulkan-tools vulkan-validationlayers`.
+- Verify: run `vulkaninfo` and confirm it reports your GPU.
+
+### Validation layers and debug utils
+
+- Enable `VK_LAYER_KHRONOS_validation` in debug builds.
+- Use `VK_EXT_debug_utils` to register a debug messenger and surface validation messages early.
+- Prefer using `vkconfig` to toggle layers and settings when iterating.
+
+### Basic rendering flow (high level)
+
+- Create instance
+- Select physical device
+- Create logical device + queues
+- Create surface + swapchain
+- Create render pass and graphics pipeline
+- Allocate and record command buffers
+- Create synchronization primitives (semaphores/fences)
+- Frame loop: acquire image → submit → present
+
+### Recommended tools
+
+- RenderDoc (frame capture)
+- Vulkan validation layers (API correctness)
+- `vkconfig` (layer configuration)
+- GPUView (Windows GPU/CPU timeline investigation)
 
 1. Clone this repository
 2. Review the documentation in `docs/`
@@ -128,6 +167,6 @@ For inquiries about the Lunar Recycling System project:
 
 ---
 
-**Last Updated**: December 3, 2025  
-**Version**: 1.0.0  
+**Last Updated**: 2026-03-02 19:10:37
+**Version**: 1.0.0
 **Status**: Active Development - Documentation Phase
